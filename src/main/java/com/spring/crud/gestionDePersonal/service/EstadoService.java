@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 import org.springframework.stereotype.Service;
 
+import com.spring.crud.gestionDePersonal.DTOS.EstadoDTO;
 import com.spring.crud.gestionDePersonal.model.Estado;
 import com.spring.crud.gestionDePersonal.repository.IEstadoRepository;
 
@@ -104,6 +105,9 @@ public class EstadoService implements IEstadoRepository {
         
         return estadoRepository.findAllById(ids);
     }
+
+
+    
 
     @Override
     public <S extends Estado> S save(S entity) {
@@ -199,6 +203,22 @@ public class EstadoService implements IEstadoRepository {
     public <S extends Estado, R> R findBy(Example<S> example, Function<FetchableFluentQuery<S>, R> queryFunction) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findBy'");
+    }
+
+    @Override
+    public List<Estado> findByNombre(String nombre) {
+        return estadoRepository.findByNombre(nombre);
+        
+    }
+
+    @Override
+    public List<Estado> findByPaisId(Long paisId) {
+        return estadoRepository.findByPaisId(paisId);
+    }
+
+    @Override
+    public List<EstadoDTO> findByPaisIdWithLimitedFields(Long paisId) {
+        return estadoRepository.findByPaisIdWithLimitedFields(paisId);
     }
 
 }
